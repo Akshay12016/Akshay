@@ -1,0 +1,114 @@
+#include <stdio.h>
+void add(int,int,int,int,int [10][10],int [10][10]);
+void mul(int,int,int,int,int [10][10],int [10][10]);
+void trans(int,int,int,int,int [10][10],int [10][10]);
+int main ()
+{
+  int m,n,s,p,c;
+  printf("enter no of rows and columns for first matrix\n");
+  scanf("%d%d",&m,&n);
+  int a[m][n],i,j,t[m][n];
+  printf("enter elements for first matrix\n");
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      scanf("%d",&a[i][j]);
+    }
+  }
+  printf("enter no of rows and columbs for second matrix\n");
+  scanf("%d%d",&s,&p);
+  int b[s][p];
+  printf("enter elements for second matrix\n");
+  for(i=0;i<s;i++)
+  {
+    for(j=0;j<p;j++)
+    {
+      scanf("%d",&b[i][j]);
+    }
+  }
+  if(m==s&&n==p)
+  {
+  printf("The addition of matrices is\n");
+  add(m,n,s,p,a,b);
+  }
+  else
+  {
+    printf("Addition is not possible\n");
+  }
+  if(n==p)
+  {
+    mul(m,n,s,p,a,b);
+  }
+   else
+   {
+     printf(" Multiplication is not possible\n");
+   }
+   trans(m,n,s,p,a,b);
+    return 0;
+}
+void add(int m,int n,int s,int p,int a[m][n],int b[s][p])
+{
+  int t[m][n],i,j;
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n;j++)
+    {
+      t[i][j]=a[i][j]+b[i][j];
+        printf("%d ",t[i][j]);
+     }
+     printf("\n");
+  }
+}
+void mul(int m,int n,int s,int p,int a[m][n],int b[s][p])
+{
+  int k,i,j;
+  int d[m][p],e[m][p];
+  printf("Multiplication is \n");
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<p;j++)
+    {
+      d[i][j]=0;
+      for(k=0;k<n;k++)
+      {
+        d[i][j]=d[i][j]+(a[i][k]*b[k][j]);
+      }
+      printf("%d ",d[i][j]);
+       }
+       printf("\n");
+    }
+}
+void trans (int m,int n,int s,int p,int a[m][n],int b[s][p])
+{
+  int c,i,j;
+  printf("enter\n1 for trans of m1\n2 for trans m2\n");
+  scanf("%d",&c);
+  switch(c)
+  {
+  case 1:
+  printf("The transpose of first matrix is\n");
+  for(i=0;i<n;i++)
+  {
+    for(j=0;j<m;j++)
+    {
+      printf("%d ",a[j][i]);
+    }
+    printf("\n");
+  }
+  break;
+  case 2:
+  printf("The transpose of second matrix is\n");
+      for(i=0;i<p;i++)
+    {
+    for(j=0;j<s;j++)
+    {
+      printf("%d ",b[j][i]);
+    }
+    printf("\n");
+    }
+  break;
+  default:printf("please give correct input\n");
+  break;
+  }
+}
